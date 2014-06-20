@@ -2,7 +2,7 @@
 remote=false
 spouts=1
 
-base.directory=/Users/brad/dev/mapr/storm-demo/data/mapr-storm
+base.directory=/Users/brad/dev/mapr/storm-demo/data/mapr-storm/tweets
 
 window = 3600
 

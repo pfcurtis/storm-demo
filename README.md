@@ -10,7 +10,7 @@ Install maven, git and java:
 
     sudo apt-get update
     sudo apt-get -y install maven
-    sudo apt-get -y isntall openjdk-7-jdk
+    sudo apt-get -y install openjdk-7-jdk
     sudo apt-get -y install git
     sudo apt-get -y install protobuf-compiler
 
@@ -48,8 +48,8 @@ not needed for the SimpleCatcher used in the demo so you probably can just skip 
 
 First compile and install mapr-spout on the demo branch:
 
-    git clone git://github.com/boorad/mapr-spout.git
-    cd mapr-spout
+    git clone git://github.com/pfcurtis/storm-demo.git
+    cd storm-demo
     mvn install -DskipTests
 
 You can run the tests if you like.  They should take about a minute to run and should complete successfully.
