@@ -1,0 +1,100 @@
+
+MapR Storm + MapR Tail Spout + Twitter Feed Demonstration
+
+If you have gotten this far, you have untarred the demonstration package, and are reading this
+installation document. Very good ...
+
+Some Basic Requirements in order to run the demo:
+	At least Java 6 on the machine running the demo code
+	A decent web browser: the demo works with Safari and Chrome ... possibly Firefox
+	A set of Twitter API credentials
+
+All of the files you need to alter are in the "conf" sub-directory. The start and stop scripts for
+the demo are in the "bin" sub-directory. Beyond that, you should not have to change anything else.
+The package includes the source code for the demo, but also relies upon the MapR Tail Spout (which
+is included but not in source code form). Links to the code are at the bottom of this document.
+
+To Configure the demo to run:
+
+1.   Obtain a set of Twitter Application credentials.
+	***** IF YOU HAVE ALREADY DONE THIS STEP, SKIP TO STEP 2 *****
+     Go to https://dev.twitter.com/apps, you should be presented with a login page
+     Log in with your Twitter name and password
+     Click on "Create a new application" in the upper right
+     On the "Create an application" page, fill in the following:
+         Name: mapr_storm_demo
+	 Description: Read only Twiiter stream access
+	 Website: http://www.mapr.com
+	 Callback URL: (Leave Blank)
+     Scroll down this page, check the "Yes, I agree" box, fill in the CAPTCHA, and click "Create
+     your Twitter application"
+
+     You should be presented with a "My applications" titled with the name you previsouly entered.
+     At the bottom of this page, you will need to click the "Create my access token" button to
+     obtain the complete set of credentials. Once that is complete, the information you will need 
+     to operate the demo are:
+        Consumer key
+	Consumer secret
+	Access token
+	Access token secret
+     Keep the page open while you move to step 2 ....
+
+2.   Edit the "twitter4j.properties" in the "conf" sub-directory
+     Copy the file "twitter4j.properties.example" to "twitter4j.properties". Open your favorite
+     text editor, edit the "twitter4j.properties" file
+     Using the information obtained in step 1, change the example values to the values from step 1
+        Consumer key -> oauth.consumerKey
+	Consumer secret -> oauth.consumerSecret
+	Access token -> oauth.accessToken
+	Access token secret -> oauth.accessTokenSecret
+
+3.   Edit the "mapr-storm.properties" file in the "conf" sub-directory
+     Copy the file "mapr-storm.properties.example" to "mapr-storm.properties"
+     Using your fave text editor, edit the "mapr-storm.properties" file.
+     Alter the "franz.server.base.directory" to the correct
+     path. The path must be a full path to where you have untarred the demo package. Check
+     the path with the "pwd" to be sure. This path is critical ... if it is not correct, the
+     demo will not get the stream of tweets.
+
+4.   Edit the "mapr-storm-demo.properties" file in the "conf" sub-directory
+     Copy the file "mapr-storm-demo.properties.example" to "mapr-storm-demo.properties"
+     Again, utilizing your fave text editor, edit the "mapr-storm-demo.properties" file.
+     You need to alter the "base.directory" and "doc.root" entries to have the correct path.
+     Again, this is critical as the demo will not operate properly if these paths are
+     incorrect. The same rules from step 3 apply: full path names and the correct place.
+
+5.   At this point, everything is configured and the demonstration is ready to run. Change
+     into the "bin" directory, and execute the "start-demo.sh" script. The script starts
+     four processes .... three Java and the Python web server. Any errors seen should be
+     noted. If you see errors, you can stop the processes that are running by executing the
+     "shutdown-demo.sh" script. Most problems with using the demo come from incorrect paths.
+     Other issues that might cause problems: processes already running that use ports 8080
+     or 8000. 
+
+6.   If all is well, you should now be able to open a web browser and see the demo. The URL
+     is "http://localhost:8000" Out of the box, the query will be the keyword "news". This
+     will generate a nice visual fairly quickly. I HIGHLY recommend refreshing the web
+     browser to ensure the visual display is reading properly.
+
+7.   To change the keyword(s) being searched on Twitter, clock on the "Settings" button in
+     the upper right of the web page. In the query textbox, type in your search words. For
+     example, you might choose "nsa" or "Obama" or "new york" ... 
+     Then click the "Go" button. Within a few seconds, the web page title "Live Word Cloud"
+     will reflect the query word(s) you have entered. To close the "Settings" dialog box,
+     click the "Settings" button again.
+
+8.   Enjoy! This is a demonstration to start conversations with prospects. Explaining how
+     MapR clusters can host Storm topologies because of direct NFS is the start, and then
+     move on from there.
+
+     What Does the Demo Demonstrate?
+        Direct NFS
+	MapR Tail Spout and Storm
+	Realtime reading and writing of data on a MapR cluster by multiple programs
+	Parallel Storm processing on nodes of a MapR cluster
+	Interesting use of Mahout and sliding window counts
+
+     Tricks and Ideas: Go to twitter.com and see what's trending today. This way you have a
+     couple of queries that will generate nice visuals while you talk. 
+
+All props go to Brad Anderson & Ted Dunning for their wicked cool software.

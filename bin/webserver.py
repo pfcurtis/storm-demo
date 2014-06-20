@@ -7,7 +7,7 @@ import SocketServer
 import logging
 import cgi
 
-PORT = 8000
+PORT = 8888
 QUERY_FILE = "../data/www/in/query"
 
 class ServerHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
